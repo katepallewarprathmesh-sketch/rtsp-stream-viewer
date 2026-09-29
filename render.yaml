@@ -1,0 +1,19 @@
+# Render Blueprint — deploy the backend (+ built-in frontend) in one click.
+# https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: rtsp-stream-viewer
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health/
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_ALLOWED_HOSTS
+        value: "*"
+      - key: DEMO_MODE
+        value: "1"
+      - key: STREAM_FPS
+        value: "10"
+      - key: STREAM_MAX_WIDTH
+        value: "854"
